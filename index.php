@@ -12,9 +12,7 @@
         $etudiant = new Etudiant($prenom, $nom, $date, $email);
         $gestionnaire = new GestionnaireFichiersEtudiants();
         $gestionnaire->ajouterEtudiant($etudiant);
-        $gestionnaire->afficherEtudiants($etudiant);
-
-
+        $gestionnaire->afficherEtudiants();
     }
 ?>
 

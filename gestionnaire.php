@@ -69,11 +69,8 @@
         }
         
 
-        public function afficherEtudiants($etudiant){
-            echo "Prénom: " . $etudiant->getPrenom() . "<br>";
-            echo "Nom: " . $etudiant->getNom() . "<br>";
-            echo "Date de naissance: " . $etudiant->getDate() . "<br>";
-            echo "Email: " . $etudiant->getEmail() . "<br>";
+        public function afficherEtudiants(){
+
         }
     }
 ?>
