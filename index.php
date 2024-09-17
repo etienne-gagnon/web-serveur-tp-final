@@ -1,9 +1,25 @@
 <?php
 
+    require "gestionnaire.php";
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+        $prenom = $_POST["prenom"];
+        $nom = $_POST["nom"];
+        $date = $_POST["date"];
+        $email = $_POST["email"];
+
+        $etudiant = new Etudiant($prenom, $nom, $date, $email);
+        $gestionnaire = new GestionnaireFichiersEtudiants();
+        $gestionnaire->ajouterEtudiant($etudiant);
+        $gestionnaire->afficherEtudiants($etudiant);
+
+
+    }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +27,7 @@
     <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <form action="">
+    <form method="post" action="">
         <h1>Gestion des étudiants</h1>
         <label for="prenom">Prénom:</label>
         <input type="text" name="prenom">
