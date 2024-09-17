@@ -70,10 +70,41 @@
         
 
         public function afficherEtudiants(){
-            $file = fopen("liste-etudiants.txt", "r");          
+            $file = fopen("liste-etudiants.txt", "r");       
+        
+            echo "        
+            <table id='tableau'>
+            <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom de famille</th>
+                    <th>Date de naissance</th>
+                    <th>E-mail</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>";
+
             while(!feof($file)){
-                echo fgets($file)."<br>";
+                $ligne = fgets($file);
+                $donnees = explode(";", $ligne);
+
+                echo "<tr>";
+                foreach($donnees as $donnee){
+                    echo "<td>" . $donnee . "</td>";
+                }
+
+                echo "
+                <td class='action'>
+                    <a href='#'>Modifier</a> | <a href='#'>Supprimer</a>
+                </td>
+                </tr>";
             }
+
+            echo "
+            </tbody>
+            </table>";
+
             fclose($file);
         }
     }

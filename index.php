@@ -3,7 +3,6 @@
     require "gestionnaire.php";
 
     $gestionnaire = new GestionnaireFichiersEtudiants();
-    $gestionnaire->afficherEtudiants();
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -40,26 +39,7 @@
         <button type="submit">Ajouter un étudiant</button>
 
         <h1>Liste des étudiants</h1>
-        <table>
-        <thead>
-            <tr>
-                <th>Prénom</th>
-                <th>Nom de famille</th>
-                <th>Date de naissance</th>
-                <th>E-mail</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="actions">
-                    <a href="#">Modifier</a> | <a href="#">Supprimer</a>
-            </td>
-        </tbody>
-        </table>
+        <?php $gestionnaire->afficherEtudiants(); ?>
     </form>
 </body>
 </html>
