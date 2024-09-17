@@ -1,6 +1,9 @@
+body{
+    font-family: arial /*Montserrat*/;
+}
 
 table {
-    width: 50%;
+    width: 100%;
     border-collapse: collapse;
 }
 table, th, td {
@@ -12,4 +15,40 @@ th, td {
 }
 th {
     background-color: #f2f2f2;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 80%;
+    margin: 50px auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+input{
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid;
+}
+
+button{
+    background-color: rgb(12, 170, 12);
+    color: white;
+    padding: 6px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px;
+}
+button:hover{
+    background-color: rgb(200, 255, 0);
+    color: black;
+}
+.action, a{
+    text-decoration: none;
 }
