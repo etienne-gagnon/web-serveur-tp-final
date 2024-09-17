@@ -2,6 +2,9 @@
 
     require "gestionnaire.php";
 
+    $gestionnaire = new GestionnaireFichiersEtudiants();
+    $gestionnaire->afficherEtudiants();
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $prenom = $_POST["prenom"];
@@ -10,9 +13,8 @@
         $email = $_POST["email"];
 
         $etudiant = new Etudiant($prenom, $nom, $date, $email);
-        $gestionnaire = new GestionnaireFichiersEtudiants();
         $gestionnaire->ajouterEtudiant($etudiant);
-        $gestionnaire->afficherEtudiants();
+        
     }
 ?>
 

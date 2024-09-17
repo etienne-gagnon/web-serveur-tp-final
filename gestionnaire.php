@@ -3,12 +3,12 @@
         public function ajouterEtudiant($etudiant); 
         //public function modifierEtudiant($etudiant); 
         //public function supprimerEtudiant($etudiant); 
-        public function afficherEtudiants($etudiant);
+        public function afficherEtudiants();
     }
 
     abstract class GestionnaireDesEtudiants implements OperationsEtudiantes {
         abstract public function ajouterEtudiant($etudiant);
-        abstract public function afficherEtudiants($etudiant);
+        abstract public function afficherEtudiants();
     }
 
     class Etudiant{
@@ -70,7 +70,11 @@
         
 
         public function afficherEtudiants(){
-
+            $file = fopen("liste-etudiants.txt", "r");          
+            while(!feof($file)){
+                echo fgets($file)."<br>";
+            }
+            fclose($file);
         }
     }
 ?>
