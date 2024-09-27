@@ -91,14 +91,20 @@
 
                 echo "<tr>";
                 foreach($donnees as $donnee){
-                    echo "<td>" . $donnee . "</td>";
+                    if(!$donnee == ""){
+                        echo "<td>" . $donnee . "</td>";
+                    }
                 }
 
-                echo "
-                <td class='action'>
-                    <a href='#'>Modifier</a> | <a href='#'>Supprimer</a>
-                </td>
-                </tr>";
+                if(! $ligne == ""){
+                    echo "
+                    <td class='action'>
+                        <a href='#'>Modifier</a> | <a href='#'>Supprimer</a>
+                    </td>
+                    </tr>";
+                }
+                
+
             }
 
             echo "
