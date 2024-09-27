@@ -29,7 +29,7 @@
     <form id="form" method="post" action="">
         <h1>Gestion des étudiants</h1>
         <label for="prenom">Prénom:</label>
-        <input type="text" name="prenom">
+        <input type="text" name="prenom" value="<?= htmlspecialchars($prenom) ?>">
         <label for="nom">Nom de famille:</label>
         <input type="text" name="nom">
         <label for="date">Date de naissance:</label>

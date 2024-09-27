@@ -68,10 +68,21 @@
             fclose($file);
         }
         
+        // Fonction pour modifier l'étudiant dans le fichier
+        public function modifierEtudiant($etudiant, $ligneId) {
+            // Lire toutes les lignes du fichier
+            $file = file("liste-etudiants.txt");
+            // Créer une nouvelle ligne pour l'étudiant modifié
+            $file[$ligneId] = implode(";", $etudiant) . "\n";
+            // Sauvegarder les modifications dans le fichier
+            file_put_contents("liste-etudiants.txt", implode("", $file));
+            echo "Étudiant mis à jour avec succès.";
+        }
 
         public function afficherEtudiants(){
             $file = fopen("liste-etudiants.txt", "r");       
-        
+            $ligneId = 0;
+
             echo "        
             <table id='tableau'>
             <thead>
@@ -99,12 +110,13 @@
                 if(! $ligne == ""){
                     echo "
                     <td class='action'>
-                        <a href='#'>Modifier</a> | <a href='#'>Supprimer</a>
+                        <a href='?modifier=$ligneId'>Modifier</a> |
+                        <a href='?supprimer=$ligneId'>Supprimer</a>
                     </td>
                     </tr>";
                 }
                 
-
+                $ligneId++;
             }
 
             echo "
@@ -113,5 +125,51 @@
 
             fclose($file);
         }
+        // Fonction pour pré-remplir le formulaire si modification
+        public function getEtudiantByLigneId($ligneId) {
+            $file = file("liste-etudiants.txt");
+
+            if (isset($file[$ligneId])) {
+                return explode(";", $file[$ligneId]);
+            }
+
+            return null;
+        }
+}
+// Initialisation de l'objet Gestionnaire
+$gestionnaire = new GestionnaireFichiersEtudiants();
+
+// Initialisation des variables
+$prenom = $nom = $dateNaissance = $email = "";
+$ligneId = null;
+
+// Vérifier si l'utilisateur clique sur "Modifier" pour pré-remplir le formulaire
+if (isset($_GET['modifier'])) {
+    $ligneId = $_GET['modifier'];
+    $etudiant = $gestionnaire->getEtudiantByLigneId($ligneId);
+
+    // Remplir le formulaire avec les données de l'étudiant
+    if ($etudiant) {
+        $prenom = trim($etudiant[0]);
+        $nom = trim($etudiant[1]);
+        $dateNaissance = trim($etudiant[2]);
+        $email = trim($etudiant[3]);
     }
+}
+
+// Si le formulaire est soumis pour modification
+if (isset($_POST['sauvegarder'])) {
+    $ligneId = $_POST['ligneId'];
+    
+    $etudiant = [
+        $_POST['prenom'],
+        $_POST['nom'],
+        $_POST['date_naissance'],
+        $_POST['email']
+    ];
+
+    // Sauvegarder les modifications
+    $gestionnaire->modifierEtudiant($etudiant, $ligneId);
+}
+
 ?>
