@@ -96,6 +96,7 @@
             </thead>
             <tbody>";
 
+        
             while(!feof($file)){
                 $ligne = fgets($file);
                 $donnees = explode(";", $ligne);
