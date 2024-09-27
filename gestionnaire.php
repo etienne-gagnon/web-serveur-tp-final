@@ -67,16 +67,12 @@
             fwrite($file, $etudiant->getPrenom() . ";" . $etudiant->getNom() . ";" . $etudiant->getDate() . ";" . $etudiant->getEmail(). "\n" );
             fclose($file);
         }
-        
 
-
-        // Fonction pour modifier l'étudiant dans le fichier
         public function modifierEtudiant($etudiant, $ligneId) {
-            // Lire toutes les lignes du fichier
             $file = file("liste-etudiants.txt");
-            // Créer une nouvelle ligne pour l'étudiant modifié
+
             $file[$ligneId] = implode(";", $etudiant) . "\n";
-            // Sauvegarder les modifications dans le fichier
+            
             file_put_contents("liste-etudiants.txt", implode("", $file));
             echo "Étudiant mis à jour avec succès.";
         }
@@ -128,6 +124,7 @@
 
             fclose($file);
         }
+
         // Fonction pour pré-remplir le formulaire si modification
         public function getEtudiantByLigneId($ligneId) {
             $file = file("liste-etudiants.txt");
@@ -138,6 +135,20 @@
 
             return null;
         }
+
+
+        public function supprimerEtudiant(){
+
+        }
+
+
+
+
+
+
+
+
+
 }
 
 

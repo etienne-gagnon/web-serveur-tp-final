@@ -103,6 +103,7 @@
 
         <label for="prenom">Prénom:</label>
         <input type="text" name="prenom" value="<?php echo htmlspecialchars($prenom) ?>">
+        
         <label for="nom">Nom de famille:</label>
         <input type="text" name="nom" value="<?php echo htmlspecialchars($nom) ?>">
         <?php echo "<label class='erreur'>" . $erreurNom . "</label>" ?>
