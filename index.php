@@ -73,6 +73,13 @@
         if($prenom && $nom && $date && $email ){
             $etudiant = new Etudiant($prenom, $nom, $date, $email);
             $gestionnaire->ajouterEtudiant($etudiant);
+
+            $prenom = "";
+            $nom = "";
+            $date = "";
+            $email = "";
+            
+
         }else{
             $erreurSubmit = "Vous devez corriger les erreurs dans le formulaire avant d'ajouter l'étudiant.e";
         }
@@ -95,17 +102,17 @@
         <h1>Gestion des étudiants</h1>
 
         <label for="prenom">Prénom:</label>
-        <input type="text" name="prenom">
+        <input type="text" name="prenom" value="<?php echo htmlspecialchars($prenom) ?>">
         <label for="nom">Nom de famille:</label>
-        <input type="text" name="nom">
+        <input type="text" name="nom" value="<?php echo htmlspecialchars($nom) ?>">
         <?php echo "<label class='erreur'>" . $erreurNom . "</label>" ?>
 
         <label for="date">Date de naissance:</label>
-        <input type="date" name="date">
+        <input type="date" name="date" value="<?php echo htmlspecialchars($date) ?>">
         <?php echo "<label class='erreur'>" . $erreurDate . "</label>" ?>
 
         <label for="email">E-mail</label>
-        <input type="text" name="email">
+        <input type="text" name="email" value="<?php echo htmlspecialchars($email) ?>">
         <?php echo "<label class='erreur'>" . $erreurEmail . "</label>" ?>
 
         <button type="submit">Ajouter un étudiant</button>

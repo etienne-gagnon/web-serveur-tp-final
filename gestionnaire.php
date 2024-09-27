@@ -68,6 +68,8 @@
             fclose($file);
         }
         
+
+
         // Fonction pour modifier l'étudiant dans le fichier
         public function modifierEtudiant($etudiant, $ligneId) {
             // Lire toutes les lignes du fichier
@@ -137,6 +139,8 @@
             return null;
         }
 }
+
+
 // Initialisation de l'objet Gestionnaire
 $gestionnaire = new GestionnaireFichiersEtudiants();
 
