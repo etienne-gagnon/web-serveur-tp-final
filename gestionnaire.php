@@ -68,9 +68,9 @@
             fclose($file);
         }
         
-
         public function afficherEtudiants(){
-            $file = fopen("liste-etudiants.txt", "r");       
+            $file = fopen("liste-etudiants.txt", "r");    
+            $idEtudiant = 1;   
         
             echo "        
             <table id='tableau'>
@@ -85,6 +85,7 @@
             </thead>
             <tbody>";
 
+        
             while(!feof($file)){
                 $ligne = fgets($file);
                 $donnees = explode(";", $ligne);
@@ -99,12 +100,10 @@
                 if(! $ligne == ""){
                     echo "
                     <td class='action'>
-                        <a href='#'>Modifier</a> | <a href='#'>Supprimer</a>
+                        <a href='#' >Modifier</a> | <a href='#'>Supprimer</a>
                     </td>
                     </tr>";
                 }
-                
-
             }
 
             echo "
@@ -113,5 +112,7 @@
 
             fclose($file);
         }
+
     }
+
 ?>
