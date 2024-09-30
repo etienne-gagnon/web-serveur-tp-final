@@ -15,21 +15,36 @@
     $dateValide = false;
     $emailValide = false;
 
+    $prenom = "";
+    $nom = "";
+    $date = "";
+    $email = "";
+
+
+    if($_SERVER["REQUEST_METHOD"] == "GET"){
+
+            $rowId = $_GET["id"];
+            $gestionnaire->showEtudiantModifier($rowId);
+        
+
+        
+
+       
+    }
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $prenom = $_POST["prenom"];
         $nom = $_POST["nom"];
         $date = $_POST["date"];
         $email = $_POST["email"];
-
-
-
+        
         
         // VALIDATION DES CHAMPS
 
         if(empty($prenom)){
             $erreurPrenom = "Vous devez mettre un prénom.";
-        }else if(!ctype_alpha($prenom)){
+        }else if(is_numeric($prenom)){
             $erreurPrenom = "Votre prénom n'est pas valide.";
         }else{
             $prenomValide = true;
@@ -37,7 +52,7 @@
 
         if(empty($nom)){
             $erreurNom = "Vous devez mettre un nom.";
-        }else if(!ctype_alpha($nom)){
+        }else if(is_numeric($nom)){
             $erreurNom = "Votre nom n'est pas valide.";
         }else{
             $nomValide = true;
@@ -80,6 +95,7 @@
             $email = "";
             
 
+
         }else{
             $erreurSubmit = "Vous devez corriger les erreurs dans le formulaire avant d'ajouter l'étudiant.e";
         }
@@ -102,8 +118,9 @@
         <h1>Gestion des étudiants</h1>
 
         <label for="prenom">Prénom:</label>
-        <input type="text" name="prenom" value="<?php echo htmlspecialchars($prenom) ?>">
-        
+        <input type="text" name="prenom" value="<?php echo htmlspecialchars($prenom)?>">
+        <?php echo "<label class='erreur'>" . $erreurPrenom . "</label>" ?>
+
         <label for="nom">Nom de famille:</label>
         <input type="text" name="nom" value="<?php echo htmlspecialchars($nom) ?>">
         <?php echo "<label class='erreur'>" . $erreurNom . "</label>" ?>

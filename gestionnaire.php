@@ -2,7 +2,7 @@
     interface OperationsEtudiantes{   
         public function ajouterEtudiant($etudiant); 
         //public function modifierEtudiant($etudiant); 
-        //public function supprimerEtudiant($etudiant); 
+        //public function supprimerEtudiant($id); 
         public function afficherEtudiants();
     }
 
@@ -68,18 +68,11 @@
             fclose($file);
         }
 
-        public function modifierEtudiant($etudiant, $ligneId) {
-            $file = file("liste-etudiants.txt");
-
-            $file[$ligneId] = implode(";", $etudiant) . "\n";
-            
-            file_put_contents("liste-etudiants.txt", implode("", $file));
-            echo "Étudiant mis à jour avec succès.";
-        }
-
         public function afficherEtudiants(){
             $file = fopen("liste-etudiants.txt", "r");       
-            $ligneId = 0;
+            $ligneId = 1;
+
+            $id = 1;
 
             echo "        
             <table id='tableau'>
@@ -98,8 +91,9 @@
             while(!feof($file)){
                 $ligne = fgets($file);
                 $donnees = explode(";", $ligne);
+                $rowId = 1;
 
-                echo "<tr>";
+                echo "<tr id='row".$id."'>";
                 foreach($donnees as $donnee){
                     if(!$donnee == ""){
                         echo "<td>" . $donnee . "</td>";
@@ -109,13 +103,12 @@
                 if(! $ligne == ""){
                     echo "
                     <td class='action'>
-                        <a href='?modifier=$ligneId'>Modifier</a> |
-                        <a href='?supprimer=$ligneId'>Supprimer</a>
+                        <a href='?id=".$id++."'>Modifier</a> |
+                        <a href=''>Supprimer</a>
                     </td>
                     </tr>";
                 }
-                
-                $ligneId++;
+                   
             }
 
             echo "
@@ -125,7 +118,79 @@
             fclose($file);
         }
 
-        // Fonction pour pré-remplir le formulaire si modification
+        public function showEtudiantModifier($rowId){
+            
+         $file = fopen("liste-etudiants.txt", "r");       
+        
+           $compteur = 1;
+
+            while(!feof($file)){
+                
+                $lignes = fgets($file);
+
+                if($compteur == $rowId){
+                
+                }
+
+                $compteur++;
+
+            }
+
+            fclose($file);
+
+        }
+
+    }
+
+      
+
+/*
+    if (isset($_GET['modifier'])) {
+        $ligneId = $_GET['modifier'];
+        $etudiant = $gestionnaire->getEtudiantByLigneId($ligneId);
+        if ($etudiant) {
+            $prenom = trim($etudiant[0]);
+            $nom = trim($etudiant[1]);
+            $dateNaissance = trim($etudiant[2]);
+            $email = trim($etudiant[3]);
+        }
+    }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+public function modifierEtudiant($etudiant, $ligneId) {
+            $file = file("liste-etudiants.txt");
+
+            $file[$ligneId] = implode(";", $etudiant) . "\n";
+            
+            file_put_contents("liste-etudiants.txt", implode("", $file));
+            echo "Étudiant mis à jour avec succès.";
+        }
+
         public function getEtudiantByLigneId($ligneId) {
             $file = file("liste-etudiants.txt");
 
@@ -136,9 +201,16 @@
             return null;
         }
 
+       public function supprimerEtudiant($id){
+ 
+        $file = file("liste-etudiants.txt"); 
+        
+        echo $id;
+        
+        unset($file[$id]);
 
-        public function supprimerEtudiant(){
-
+        file_put_contents("liste-etudiants.txt", implode("",  $file));
+            
         }
 
 
@@ -187,5 +259,12 @@ if (isset($_POST['sauvegarder'])) {
     // Sauvegarder les modifications
     $gestionnaire->modifierEtudiant($etudiant, $ligneId);
 }
-
+*/
 ?>
+
+
+
+
+
+
+
